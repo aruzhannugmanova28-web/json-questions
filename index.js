@@ -10,22 +10,46 @@ main_array.forEach(book => {
     console.log(book.title);
 }
 );
-// Output: [ { id: 2, name: 'Bob', city: 'London' } ]
+
 console.log("--------#1: avg time it takes Mx. Bradford to read a book---------");
+
 const avgtime_filter_1 = main_array.filter(book => book ["Time on TBR (days)"] !== 'N/A');
-const avgtime_filter_2 = main_array.filter(book => book ["Time on TBR (days)"] !== 'N/A');
+const avgtime_filter_2 = avgtime_filter_1.filter(book => book ["Time on TBR (days)"] > 0);
+const avgtime_filter_3 = avgtime_filter_2.filter(book => book ["Time on TBR (days)"] < 10000);
 
-
-avgtime_filter.forEach(book => {
-    console.log(book["Time on TBR (days)"]);
-}
+const cleanedValues = avgtime_filter_3.map(
+  book => Number(book["Time on TBR (days)"])
 );
 
+function calculateArrayAverage(arr) {
+  if (arr.length === 0) {
+    return 0; 
+  }
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
 
+const average = calculateArrayAverage(cleanedValues);
+console.log(average);
+ 
 
 console.log("--------#2: % of books that are read---------");
+const number_books_1 = main_array.filter(book => book ["read?"] !== 'No');
 
+const number_books= number_books_1.map(
+  book => Number(book["read?"])
+);
+console.log(number_books)
+function calculate_number_books(arr) {
+  const read = number_books.filter(book => book ["read?"] == 'Yes').length;
+  return (read / main_array.length) * 100;
+}
 
+const percent_books = calculate_number_books(number_books);
+console.log(percent_books);
 
 console.log("--------#3: what are my fav genre based on how many purchases---------");
 
