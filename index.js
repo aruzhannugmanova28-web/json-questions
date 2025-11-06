@@ -36,24 +36,40 @@ const average = calculateArrayAverage(cleanedValues);
 console.log(average);
  
 
+
 console.log("--------#2: % of books that are read---------");
+
 const number_books_1 = main_array.filter(book => book ["read?"] !== 'No');
 
 const number_books= number_books_1.map(
   book => Number(book["read?"])
 );
-console.log(number_books)
+
 function calculate_number_books(arr) {
-  const read = number_books.filter(book => book ["read?"] == 'Yes').length;
+const read = number_books_1.length;
   return (read / main_array.length) * 100;
 }
 
 const percent_books = calculate_number_books(number_books);
 console.log(percent_books);
 
+
+
+
+
+
+
+
+
+
 console.log("--------#3: what are my fav genre based on how many purchases---------");
 
+const frequencyCounter = {};
+main_array.forEach(item => {
+  frequencyCounter[item] = (frequencyCounter[item] || 0) + 1;
+});
 
+console.log(frequencyCounter); 
 
 console.log("--------#4: what year have i aquired the most books---------");
 
@@ -61,8 +77,3 @@ console.log("--------#4: what year have i aquired the most books---------");
 
 console.log("--------#5: what year have i aquired the most books---------");
 
-
-
-// fetch('./rawBooks.json')
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
