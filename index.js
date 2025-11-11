@@ -55,21 +55,34 @@ console.log(percent_books);
 
 
 
-
-
-
-
-
-
-
 console.log("--------#3: what are my fav genre based on how many purchases---------");
 
-const frequencyCounter = {};
-main_array.forEach(item => {
-  frequencyCounter[item] = (frequencyCounter[item] || 0) + 1;
-});
+const genre_of_books = main_array.flatMap(book =>
+  String(book.category || "")
+    .split(/[,/;&]| and /i)
+    .map(s => s.trim())
+    .filter(Boolean)
+);
+function frequency(arr){
+    const frequencyCounter = {};
+    for (const item of arr) {
+        frequencyCounter[item] = (frequencyCounter[item] || 0) + 1;
+    }
 
-console.log(frequencyCounter); 
+    let mostFrequentelement= null; 
+    let maxcount = 0; 
+
+    for (const item in frequencyCounter){
+        if (frequencyCounter[item]> maxcount){
+            maxcount=frequencyCounter[item];
+            mostFrequentelement=item;
+        }
+    }
+    return mostFrequentelement
+}
+
+const genre = frequency(genre_of_books);
+console.log(genre);
 
 console.log("--------#4: what year have i aquired the most books---------");
 
