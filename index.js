@@ -11,13 +11,17 @@ main_array.forEach(book => {
 }
 );
 
+
+
+
+
+
+
 console.log("--------#1: avg time it takes Mx. Bradford to read a book---------");
 
 const avgtime_filter_1 = main_array.filter(book => book ["Time on TBR (days)"] !== 'N/A');
 const avgtime_filter_2 = avgtime_filter_1.filter(book => book ["Time on TBR (days)"] >= 0);
 const avgtime_filter_3 = avgtime_filter_2.filter(book => book ["Time on TBR (days)"] < 10000);
-
-console.log(avgtime_filter_3)
 
 const cleanedValues = avgtime_filter_3.map(
   book => Number(book["Time on TBR (days)"])
@@ -37,6 +41,8 @@ function calculateArrayAverage(arr) {
 const average = calculateArrayAverage(cleanedValues);
 console.log(average);
  
+
+
 
 
 
@@ -91,6 +97,12 @@ function frequency(arr){
 const genre = frequency(genre_of_books);
 console.log(genre);
 
+
+
+
+
+
+
 console.log("--------#4: what year have i aquired the most books---------");
 
 const year_of_book = main_array.flatMap(book =>
@@ -120,9 +132,16 @@ const year = frequency_years(year_of_book);
 console.log(year);
 
 
+
+
+
+
+
 console.log("--------#5: avg number of pages ---------");
 
-const cleanedValues_pages = main_array.map(
+const avgpage_filter_1 = main_array.filter(book => book ["# Pages"] >= 0);
+
+const cleanedValues_pages = avgpage_filter_1.map(
   book => Number(book["# Pages"])
 );
 
